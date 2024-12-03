@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login & Register</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f9;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .form-container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+            width: 300px;
+        }
+        .form-container h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .toggle-link {
+            text-align: center;
+            margin-top: 10px;
+            font-size: 14px;
+            cursor: pointer;
+            color: #007BFF;
+        }
+    </style>
+</head>
+<body>
+
+<div class="form-container">
+    <h2 id="form-title">Login</h2>
+    <form id="authForm">
+        <input type="text" id="name" placeholder="Enter your name" required>
+        <input type="password" id="password" placeholder="Enter your password" required>
+        <button type="button" onclick="handleAuth()">Login</button>
+    </form>
+    <p class="toggle-link" onclick="toggleForm()">Don't have an account? Register</p>
+</div>
+
+<script>
+    let isLogin = true;
+
+    function toggleForm() {
+        isLogin = !isLogin;
+        document.getElementById('form-title').innerText = isLogin ? 'Login' : 'Register';
+        document.querySelector('button').innerText = isLogin ? 'Login' : 'Register';
+        document.querySelector('.toggle-link').innerText = isLogin 
+            ? "Don't have an account? Register" 
+            : "Already have an account? Login";
+    }
+
+    function handleAuth() {
+        const name = document.getElementById('name').value;
+        const password = document.getElementById('password').value;
+
+        if (name && password) {
+            if (isLogin) {
+                alert(`Welcome back, ${name}!`);
+            } else {
+                alert(`Account created for ${name}. You can now login!`);
+                toggleForm();
+            }
+        } else {
+            alert('Please fill in all fields!');
+        }
+    }
+</script>
+
+</body>
+</html>
